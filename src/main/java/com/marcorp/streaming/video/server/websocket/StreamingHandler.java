@@ -1,7 +1,6 @@
-package com.marcorp.streaming.video.server.handler;
+package com.marcorp.streaming.video.server.websocket;
 
 import com.marcorp.streaming.video.server.processor.VideoSenderProcessor;
-import com.marcorp.streaming.video.server.processor.VideoSenderProcessorOld;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.socket.WebSocketHandler;
 import org.springframework.web.reactive.socket.WebSocketSession;

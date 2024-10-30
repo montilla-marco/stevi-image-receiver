@@ -1,4 +1,4 @@
-package com.marcorp.streaming.video.server.handler;
+package com.marcorp.streaming.video.server.websocket;
 
 import com.marcorp.streaming.video.server.processor.VideoReceiverProcessor;
 import org.springframework.stereotype.Component;

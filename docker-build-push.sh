@@ -2,13 +2,13 @@
 
 # Variables
 REPOSITORY_URI="025739748709.dkr.ecr.us-east-1.amazonaws.com"  # Sustituir por el URI de tu repositorio ECR
-IMAGE_NAME="marcorp/driver-monitor-bff"         # Nombre de tu imagen Docker
-TAG="latest"                              # Puedes cambiar el tag si es necesario
+IMAGE_REPO_NAME="marcorp/stevi-image-receiver"         # Nombre de tu imagen Docker
+IMAGE_TAG="latest"                              # Puedes cambiar el tag si es necesario
 AWS_REGION="us-east-1"                    # Región AWS donde está tu ECR
 
 # Comprobar si hay argumentos para cambiar el TAG
 if [ "$1" ]; then
-  TAG="$1"
+  IMAGE_TAG="$1"
 fi
 
 # Autenticarse en el ECR
@@ -22,7 +22,7 @@ fi
 
 # Construir la imagen Docker
 echo "Construyendo la imagen Docker..."
-docker build -t $IMAGE_NAME .
+docker build -t $IMAGE_REPO_NAME .
 
 if [ $? -ne 0 ]; then
   echo "Error al construir la imagen Docker"
@@ -31,11 +31,11 @@ fi
 
 # Etiquetar la imagen
 echo "Etiquetando la imagen..."
-docker tag $IMAGE_NAME:latest $REPOSITORY_URI/$IMAGE_NAME:$TAG
+docker tag $IMAGE_REPO_NAME:latest $REPOSITORY_URI/$IMAGE_REPO_NAME:$IMAGE_TAG
 
 # Hacer push de la imagen a ECR
 echo "Pushing la imagen a ECR..."
-docker push $REPOSITORY_URI/$IMAGE_NAME:$TAG
+docker push $REPOSITORY_URI/$IMAGE_REPO_NAME:$IMAGE_TAG
 
 if [ $? -ne 0 ]; then
   echo "Error al hacer push de la imagen a ECR"
@@ -45,4 +45,4 @@ fi
 #Belgica 92
 #España 86 - 90
 #Japo 88 - 89 - 90
-echo "Despliegue exitoso. Imagen disponible en $REPOSITORY_URI/$IMAGE_NAME:$TAG"
+echo "Despliegue exitoso. Imagen disponible en $REPOSITORY_URI/$IMAGE_REPO_NAME:$IMAGE_TAG"
